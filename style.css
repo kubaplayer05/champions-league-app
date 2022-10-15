@@ -4,12 +4,140 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--text-color: #fff;
+	--bg-color: #495159;
+	--primary-color: #2c20da;
+	--light-gray: #adacc0;
+}
+
 html {
 	font-size: 62.5%;
 	font-family: sans-serif;
+	color: var(--text-color);
 }
 
 body {
-	background-image: url('./img/background.jpg');
-	background-size: cover;
+	display: flex;
+	justify-content: center;
+}
+
+nav {
+	width: 100%;
+	height: 75px;
+	position: fixed;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary-color);
+	opacity: 0.9;
+}
+
+main {
+	margin-top: 200px;
+}
+
+.background-img {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	object-fit: cover;
+}
+
+.navigation-list {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+}
+
+.navigation-option {
+	font-size: 2rem;
+	text-transform: capitalize;
+	padding: 0 40px;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+.navigation-option:hover {
+	transform: scale(1.1);
+}
+
+.link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.group-container {
+	display: grid;
+	grid-template-columns: repeat(2, 500px);
+	gap: 30px;
+	padding-bottom: 100px;
+}
+
+.group {
+	margin-top: 20px;
+	background-color: var(--bg-color);
+	border-radius: 10px;
+}
+
+.group-list {
+	list-style: none;
+	padding: 5px 0;
+}
+
+.group-title {
+	font-size: 2rem;
+	text-align: center;
+	padding: 15px 0;
+	text-transform: uppercase;
+}
+
+.legend {
+	padding: 10px;
+	display: flex;
+	font-size: 1.6rem;
+}
+
+.group-team {
+	display: flex;
+	padding: 10px;
+	font-size: 1.6rem;
+	border-top: 1px solid var(--light-gray);
+}
+
+.left-side {
+	display: flex;
+}
+
+.legend .left-side .team-name {
+	text-transform: lowercase;
+}
+
+.right-side {
+	margin-left: auto;
+	display: flex;
+}
+
+.right-side span {
+	display: block;
+	text-align: center;
+	margin: 0 5px;
+	min-width: 20px;
+}
+
+.right-side .goal-diff {
+	min-width: 25px;
+	text-align: center;
+}
+
+.rank {
+	min-width: 35px;
+	text-align: center;
+}
+
+.team-name {
+	margin-left: 15px;
+	text-transform: capitalize;
 }
