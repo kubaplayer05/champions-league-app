@@ -19,12 +19,9 @@ fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeas
 	.then(response => response.json())
 	.then(result => {
 		const standings = result.response[0].league.standings
-		console.log(standings)
 
 		groupList.forEach(list => {
-			console.log(list)
 			const index = list.attributes[1].value
-
 			const result = standings[index].map(team => {
 				return {
 					rank: team.rank,
@@ -44,5 +41,3 @@ fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeas
 		})
 	})
 	.catch(error => console.log('error', error))
-
-console.log(groupList)
