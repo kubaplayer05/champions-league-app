@@ -12,6 +12,7 @@ const crateGroupTeam = team => {
 	const losses = document.createElement('span')
 	const goalDiff = document.createElement('span')
 	const points = document.createElement('span')
+	const logo = document.createElement('img')
 
 	li.classList.add('group-team')
 	leftSide.classList.add('left-side')
@@ -24,6 +25,7 @@ const crateGroupTeam = team => {
 	losses.classList.add('losses')
 	goalDiff.classList.add('goal-diff')
 	points.classList.add('points')
+	logo.classList.add('club-logo')
 
 	rank.textContent = team.rank
 	name.textContent = team.name
@@ -33,7 +35,9 @@ const crateGroupTeam = team => {
 	losses.textContent = team.losses
 	goalDiff.textContent = team.goalDiff
 	points.textContent = team.points
+	logo.setAttribute('src', `${team.logo}`)
 
+	name.append(logo)
 	leftSide.append(rank, name)
 	rightSide.append(gamesPlayed, wins, draws, losses, goalDiff, points)
 	li.append(leftSide, rightSide)

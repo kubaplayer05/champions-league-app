@@ -19,6 +19,7 @@ fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeas
 	.then(response => response.json())
 	.then(result => {
 		const standings = result.response[0].league.standings
+		console.log(standings)
 
 		groupList.forEach(list => {
 			const index = list.attributes[1].value
@@ -32,6 +33,7 @@ fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeas
 					losses: team.all.lose,
 					goalDiff: team.goalsDiff,
 					points: team.points,
+					logo: team.team.logo,
 				}
 			})
 
