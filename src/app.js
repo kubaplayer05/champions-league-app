@@ -43,3 +43,15 @@ fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeas
 		})
 	})
 	.catch(error => console.log('error', error))
+
+const menuIcon = document.querySelector('.hamburger-menu')
+const closeIcon = document.querySelector('.close-icon')
+const mobileNavigation = document.querySelector('.mobile-navigation')
+
+menuIcon.addEventListener('click', () => {
+	mobileNavigation.classList.remove('rotate')
+})
+
+closeIcon.addEventListener('click', () => {
+	mobileNavigation.classList.add('rotate')
+})
