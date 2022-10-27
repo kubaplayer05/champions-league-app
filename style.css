@@ -17,6 +17,7 @@ html {
 	font-size: 62.5%;
 	font-family: sans-serif;
 	color: var(--text-color);
+	overflow-x: hidden;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	width: 100vw;
 }
 
 nav {
@@ -74,6 +76,10 @@ footer {
 	padding: 0 40px;
 	cursor: pointer;
 	transition: transform 0.3s ease;
+}
+
+.hamburger-menu {
+	display: none;
 }
 
 .navigation-option:hover {
@@ -178,7 +184,8 @@ footer {
 
 .description {
 	font-size: 1.8rem;
-	margin: 0 auto;
+	text-align: center;
+	padding: 20px;
 }
 
 .profile-link {
@@ -192,7 +199,37 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
+	.navigation-list {
+		display: none;
+	}
+
+	.hamburger-menu {
+		display: block;
+		color: var(--text-color);
+		font-size: 1.8rem;
+		cursor: pointer;
+		position: absolute;
+		left: 80%;
+	}
+
 	.group-container {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 100px;
+	}
+
+	.group {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	nav {
+		z-index: 2;
+	}
+
+	.group {
+		transform: scale(0.9);
 	}
 }
