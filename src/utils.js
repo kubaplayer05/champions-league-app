@@ -1,4 +1,4 @@
-export { crateGroupTeam }
+export { crateGroupTeam, createPlayerList }
 
 const crateGroupTeam = team => {
 	const li = document.createElement('li')
@@ -41,6 +41,32 @@ const crateGroupTeam = team => {
 	leftSide.append(rank, name)
 	rightSide.append(gamesPlayed, wins, draws, losses, goalDiff, points)
 	li.append(leftSide, rightSide)
+
+	return li
+}
+
+const createPlayerList = player => {
+	const li = document.createElement('li')
+	const position = document.createElement('span')
+	const photo = document.createElement('img')
+	const name = document.createElement('p')
+	const count = document.createElement('span')
+	const logo = document.createElement('img')
+
+	li.classList.add('statistic-element')
+	position.classList.add('player-position')
+	photo.classList.add('player-photo')
+	name.classList.add('player-name')
+	count.classList.add('player-count')
+	logo.classList.add('club-logo')
+
+	position.textContent = player.position
+	photo.setAttribute('src', `${player.photoURL}`)
+	name.textContent = player.name
+	count.textContent = player.count
+	logo.setAttribute('src', `${player.logo}`)
+
+	li.append(position, photo, name, count, logo)
 
 	return li
 }

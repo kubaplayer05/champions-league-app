@@ -1,9 +1,11 @@
-import { crateGroupTeam } from './utils.js'
+import * as utils from './utils.js'
 
 // set fetch configuration
 
 const API_KEY = '7d1c90cee2546c046d41ff171199d7ee'
 const currentSeason = 2022
+
+const leagueId = 2 // 2 - Champions league
 
 const myHeaders = new Headers()
 myHeaders.append('x-rapidapi-key', API_KEY)
@@ -19,8 +21,10 @@ const requestOptions = {
 
 // functions section
 
+// standings
+
 const loadStandings = () => {
-	fetch(`https://v3.football.api-sports.io/standings?league=2&season=${currentSeason}`, requestOptions)
+	fetch(`https://v3.football.api-sports.io/standings?league=${leagueId}&season=${currentSeason}`, requestOptions)
 		.then(response => response.json())
 		.then(result => {
 			// get all lists that are in container
@@ -47,14 +51,145 @@ const loadStandings = () => {
 				})
 
 				result.forEach(el => {
-					list.append(crateGroupTeam(el))
+					list.append(utils.crateGroupTeam(el))
 				})
 			})
 		})
 		.catch(error => console.log('error', error))
 }
 
-const loadStatistics = () => {}
+// statistics
+
+const loadStatistics = () => {
+	loadTopSoccers()
+	loadTopAssisters()
+	loadYellowCards()
+	loadRedCards()
+}
+
+const loadTopSoccers = () => {
+	fetch(
+		`https://v3.football.api-sports.io/players/topscorers?season=${currentSeason}&league=${leagueId}`,
+		requestOptions
+	)
+		.then(response => response.json())
+		.then(result => {
+			const goalList = document.querySelector('.goals-list')
+
+			const playersList = result.response.map((player, index) => {
+				return {
+					name: player.player.name,
+					photoURL: player.player.photo,
+					count: player.statistics[0].goals.total,
+					games: player.statistics[0].games.appearences,
+					logo: player.statistics[0].team.logo,
+					position: index + 1,
+				}
+			})
+
+			playersList.forEach(player => {
+				goalList.append(utils.createPlayerList(player))
+			})
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+const loadTopAssisters = () => {
+	fetch(
+		`https://v3.football.api-sports.io/players/topassists?season=${currentSeason}&league=${leagueId}`,
+		requestOptions
+	)
+		.then(response => response.json())
+		.then(result => {
+			const assistsList = document.querySelector('.assists-list')
+
+			const playersList = result.response.map((player, index) => {
+				return {
+					name: player.player.name,
+					photoURL: player.player.photo,
+					count: player.statistics[0].assists.total,
+					games: player.statistics[0].games.appearences,
+					logo: player.statistics[0].team.logo,
+					position: index + 1,
+				}
+			})
+
+			playersList.forEach(player => {
+				assistsList.append(utils.createPlayerList(player))
+			})
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+const loadYellowCards = () => {
+	fetch(
+		`https://v3.football.api-sports.io/players/topyellowcards?season=${currentSeason}&league=${leagueId}`,
+		requestOptions
+	)
+		.then(response => response.json())
+		.then(result => {
+			const yellowCardsList = document.querySelector('yellow-cards-list')
+
+			const playersList = result.response.map((player, index) => {
+				return {
+					name: player.player.name,
+					photoURL: player.player.photo,
+					count: player.statistics[0].assists.total,
+					games: player.statistics[0].games.appearences,
+					logo: player.statistics[0].team.logo,
+					position: index + 1,
+				}
+			})
+
+			playersList.forEach(player => {
+				yellowCardsList.append(utils.createPlayerList(player))
+			})
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+const loadRedCards = () => {
+	fetch(
+		`https://v3.football.api-sports.io/players/topredcards?season=${currentSeason}&league=${leagueId}`,
+		requestOptions
+	)
+		.then(response => response.json())
+		.then(result => {
+			const redCardsList = document.querySelector('red-cards-list')
+
+			const playersList = result.response.map((player, index) => {
+				return {
+					name: player.player.name,
+					photoURL: player.player.photo,
+					count: player.statistics[0].assists.total,
+					games: player.statistics[0].games.appearences,
+					logo: player.statistics[0].team.logo,
+					position: index + 1,
+				}
+			})
+
+			playersList.forEach(player => {
+				redCardsList.append(utils.createPlayerList(player))
+			})
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+// matches
+
+const loadMatches = () => {}
+
+// teams
+
+const loadTeams = () => {}
 
 // end of functions section
 
@@ -76,6 +211,22 @@ closeIcon.addEventListener('click', () => {
 
 // end of mobile section
 
+// statistic change list visible
+
+const allStatisticLists = document.querySelectorAll('.statistic-list')
+const select = document.querySelector('.statistic-select')
+
+select.addEventListener('change', e => {
+	const value = e.target.value
+
+	allStatisticLists.forEach(list => {
+		if (list.classList.contains(value)) {
+			list.classList.remove('hidden')
+		} else list.classList.add('hidden')
+	})
+})
+// end of statistic section
+
 // get current localization on app and load proper function
 
 const section = window.location.pathname
@@ -85,5 +236,12 @@ switch (section) {
 		loadStandings()
 		break
 	case '/statistics.html':
+		loadStatistics()
+		break
+	case '/matches.html':
+		loadMatches()
+		break
+	case '/teams.html':
+		loadTeams()
 		break
 }

@@ -43,6 +43,7 @@ nav {
 main {
 	display: flex;
 	justify-content: center;
+	padding: 100px 0;
 }
 
 footer {
@@ -55,14 +56,7 @@ footer {
 	align-items: center;
 }
 
-/* .background-img {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-	object-fit: cover;
-} */
+/* nav section  */
 
 .navigation-list {
 	display: flex;
@@ -128,13 +122,14 @@ footer {
 	text-decoration: none;
 }
 
+/* main section */
+
 .group-container {
 	display: grid;
 	grid-template-columns: repeat(2, 500px);
 	row-gap: 20px;
 	column-gap: 40px;
-	margin-top: 150px;
-	padding-bottom: 100px;
+	margin-top: 50px;
 }
 
 .group {
@@ -219,6 +214,85 @@ footer {
 	margin-right: 10px;
 }
 
+.statistic-table {
+	width: 80%;
+	max-width: 1000px;
+	min-width: 300px;
+	height: 600px;
+	margin-top: 150px;
+	background-color: var(--bg-color);
+	overflow-y: auto;
+	overflow-x: hidden;
+	border-radius: 10px;
+}
+
+.statistic-option {
+	width: 100%;
+	height: 80px;
+	padding: 25px 50px;
+	background-color: var(--dark-color);
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.statistic-list {
+	width: 100%;
+	transition: all 0.3s ease;
+}
+
+.hidden {
+	display: none;
+}
+
+.statistic-element {
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--light-gray);
+}
+
+.player-position {
+	font-size: 1.8rem;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.player-photo {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin: 0 20px;
+}
+
+.player-name {
+	font-size: 1.6rem;
+}
+
+.player-count {
+	margin-left: auto;
+	font-size: 1.6rem;
+	font-weight: bold;
+	margin-right: 50px;
+}
+
+.statistic-element .club-logo {
+	width: 50px;
+	height: 50px;
+}
+
+.statistic-select {
+	font-size: 1.6rem;
+	padding: 0 5px;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	border-radius: 10px;
+	opacity: 0.8;
+}
+
+/* footer section  */
+
 .description {
 	font-size: 1.8rem;
 	text-align: center;
@@ -234,6 +308,8 @@ footer {
 .profile-link:hover {
 	color: var(--orange-color);
 }
+
+/* mobile devices */
 
 @media only screen and (max-width: 992px) {
 	.navigation-list {

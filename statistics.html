@@ -33,7 +33,20 @@
     </nav>
 
     <main>
-
+        <div class="statistic-table">
+            <div class="statistic-option">
+                <select class="statistic-select" name="statistic-select" id="statistics-select">
+                    <option class="select-option" value="goals-list" selected>Top goals</option>
+                    <option class="select-option" value="assists-list">Top assists</option>
+                    <option class="select-option" value="yellow-cards-list">Yellow cards</option>
+                    <option class="select-option" value="red-cards-list">Red cards</option>
+                </select>
+            </div>
+            <ul class="statistic-list goals-list"></ul>
+            <ul class="statistic-list assists-list hidden"></ul>
+            <ul class="statistic-list yellow-cards-list hidden"></ul>
+            <ul class="statistic-list red-cards-list hidden"></ul>
+        </div>
     </main>
 
     <footer>
