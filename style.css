@@ -96,6 +96,7 @@ footer {
 	height: 100vh;
 	opacity: 1;
 	transition: all 0.3s ease;
+	display: none;
 }
 
 .mobile-list {
@@ -237,6 +238,10 @@ footer {
 @media only screen and (max-width: 992px) {
 	.navigation-list {
 		display: none;
+	}
+
+	.mobile-navigation {
+		display: block;
 	}
 
 	.hamburger-menu {
