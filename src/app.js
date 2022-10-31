@@ -15,6 +15,7 @@ const requestOptions = {
 	method: 'GET',
 	headers: myHeaders,
 	redirect: 'follow',
+	'Permissions-Policy': 'interest-cohort=()',
 }
 
 // end of configuration
