@@ -109,7 +109,7 @@ const loadTopAssisters = () => {
 				return {
 					name: player.player.name,
 					photoURL: player.player.photo,
-					count: player.statistics[0].assists.total,
+					count: player.statistics[0].goals.assists,
 					games: player.statistics[0].games.appearences,
 					logo: player.statistics[0].team.logo,
 					position: index + 1,
@@ -132,13 +132,13 @@ const loadYellowCards = () => {
 	)
 		.then(response => response.json())
 		.then(result => {
-			const yellowCardsList = document.querySelector('yellow-cards-list')
+			const yellowCardsList = document.querySelector('.yellow-cards-list')
 
 			const playersList = result.response.map((player, index) => {
 				return {
 					name: player.player.name,
 					photoURL: player.player.photo,
-					count: player.statistics[0].assists.total,
+					count: player.statistics[0].cards.yellow,
 					games: player.statistics[0].games.appearences,
 					logo: player.statistics[0].team.logo,
 					position: index + 1,
@@ -161,13 +161,13 @@ const loadRedCards = () => {
 	)
 		.then(response => response.json())
 		.then(result => {
-			const redCardsList = document.querySelector('red-cards-list')
+			const redCardsList = document.querySelector('.red-cards-list')
 
 			const playersList = result.response.map((player, index) => {
 				return {
 					name: player.player.name,
 					photoURL: player.player.photo,
-					count: player.statistics[0].assists.total,
+					count: player.statistics[0].cards.red,
 					games: player.statistics[0].games.appearences,
 					logo: player.statistics[0].team.logo,
 					position: index + 1,
@@ -211,32 +211,17 @@ closeIcon.addEventListener('click', () => {
 
 // end of mobile section
 
-// statistic change list visible
-
-const allStatisticLists = document.querySelectorAll('.statistic-list')
-const select = document.querySelector('.statistic-select')
-
-select.addEventListener('change', e => {
-	const value = e.target.value
-
-	allStatisticLists.forEach(list => {
-		if (list.classList.contains(value)) {
-			list.classList.remove('hidden')
-		} else list.classList.add('hidden')
-	})
-})
-// end of statistic section
-
 // get current localization on app and load proper function
 
 const section = window.location.pathname
 
 switch (section) {
-	case '/index.html':
+	case '/standings.html':
 		loadStandings()
 		break
 	case '/statistics.html':
 		loadStatistics()
+		utils.statisticList()
 		break
 	case '/matches.html':
 		loadMatches()

@@ -1,4 +1,4 @@
-export { crateGroupTeam, createPlayerList }
+export { crateGroupTeam, createPlayerList, statisticList }
 
 const crateGroupTeam = team => {
 	const li = document.createElement('li')
@@ -69,4 +69,19 @@ const createPlayerList = player => {
 	li.append(position, photo, name, count, logo)
 
 	return li
+}
+
+const statisticList = () => {
+	const allStatisticLists = document.querySelectorAll('.statistic-list')
+	const select = document.querySelector('.statistic-select')
+
+	select.addEventListener('change', e => {
+		const value = e.target.value
+
+		allStatisticLists.forEach(list => {
+			if (list.classList.contains(value)) {
+				list.classList.remove('hidden')
+			} else list.classList.add('hidden')
+		})
+	})
 }
