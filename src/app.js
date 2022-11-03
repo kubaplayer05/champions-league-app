@@ -220,14 +220,27 @@ switch (section) {
 	case '/standings.html':
 		loadStandings()
 		break
+	case '/champions-league-app/standings.html':
+		loadStandings()
+		break
 	case '/statistics.html':
+		loadStatistics()
+		utils.statisticList()
+		break
+	case '/champions-league-app/statistics.html':
 		loadStatistics()
 		utils.statisticList()
 		break
 	case '/matches.html':
 		loadMatches()
 		break
+	case '/champions-league-app/matches.html':
+		loadMatches()
+		break
 	case '/teams.html':
+		loadTeams()
+		break
+	case '/champions-league-app/teams.html':
 		loadTeams()
 		break
 }
